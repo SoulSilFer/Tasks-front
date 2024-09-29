@@ -19,13 +19,13 @@ export interface NewTheme {
 const darkTheme: NewTheme = {
   primary: {
     light: '#e0b97a', // Ligeiramente mais claro que o main
-    main: '#d7a85e',
+    main: '#fff8b1',
     dark: '#b5894a', // Ligeiramente mais escuro que o main
     contrastText: '#211f1f', // Contraste com o background
   },
   secondary: {
     light: '#e2e7e9', // Ligeiramente mais claro que o main
-    main: '#dde2e4',
+    main: '#f9ae1a',
     dark: '#b0b5b7', // Ligeiramente mais escuro que o main
     contrastText: '#211f1f', // Contraste com o background
   },
@@ -53,7 +53,7 @@ const darkTheme: NewTheme = {
   ],
   background: {
     light: '#2e2c2c', // Ligeiramente mais claro que o main
-    main: '#211f1f',
+    main: '#151308',
     dark: '#1a1818', // Ligeiramente mais escuro que o main
     contrastText: '#ffffff', // Contraste com o texto
   },
@@ -63,13 +63,13 @@ const darkTheme: NewTheme = {
 const lightTheme: NewTheme = {
   primary: {
     light: '#e0b97a', // Ligeiramente mais claro que o main
-    main: '#d7a85e',
+    main: '#4f2312',
     dark: '#b5894a', // Ligeiramente mais escuro que o main
     contrastText: '#282321', // Contraste com o background
   },
   secondary: {
     light: '#3a3533', // Ligeiramente mais claro que o main
-    main: '#282321',
+    main: '#996c2e',
     dark: '#1f1b1a', // Ligeiramente mais escuro que o main
     contrastText: '#d6d6d6', // Contraste com o background
   },
@@ -97,7 +97,7 @@ const lightTheme: NewTheme = {
   ],
   background: {
     light: '#e0e0e0', // Ligeiramente mais claro que o main
-    main: '#d6d6d6',
+    main: '#fffdf7',
     dark: '#b3b3b3', // Ligeiramente mais escuro que o main
     contrastText: '#282321', // Contraste com o texto
   },
