@@ -15,30 +15,35 @@ interface Props {
 const InputContainer = styled.div<{ hasError: boolean }>`
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
   width: 100%;
   transition: fill 0.3s ease;
 
   &:hover {
     label {
       color: ${({ theme, hasError }) =>
-        hasError ? theme.error.dark : theme.primary.dark};
+        hasError ? theme.error.main : theme.primary.main};
     }
 
     input {
       border-color: ${({ theme, hasError }) =>
-        hasError ? theme.error.dark : theme.primary.dark};
-      box-shadow: ${({ theme }) => theme.boxShadow[0]};
+        hasError ? theme.error.main : theme.primary.main};
     }
 
     span {
       color: ${({ theme, hasError }) =>
-        hasError ? theme.error.dark : theme.primary.main};
+        hasError ? theme.error.main : theme.primary.main};
     }
 
     svg {
       fill: ${({ theme, hasError }) =>
-        hasError ? theme.error.dark : theme.primary.dark};
+        hasError ? theme.error.main : theme.primary.main};
+    }
+  }
+
+  &:focus {
+    label {
+      color: ${({ theme, hasError }) =>
+        hasError ? theme.error.main : theme.primary.main};
     }
   }
 `;
@@ -46,7 +51,7 @@ const InputContainer = styled.div<{ hasError: boolean }>`
 const Label = styled.label<{ hasError: boolean }>`
   margin-bottom: 1px;
   color: ${({ theme, hasError }) =>
-    hasError ? theme.error.main : theme.primary.main};
+    hasError ? theme.error.dark : theme.secondary.main};
   width: max-content;
 `;
 
@@ -60,26 +65,23 @@ const Input = styled.input<{ hasError: boolean }>`
   padding-right: 2.5rem; /* Espaço para o ícone */
   border: 1px solid
     ${({ theme, hasError }) =>
-      hasError ? theme.error.main : theme.primary.main};
+      hasError ? theme.error.dark : theme.secondary.main};
   border-radius: 4px;
   width: 100%;
   color: ${({ theme, hasError }) =>
-    hasError ? theme.error.main : theme.primary.main};
+    hasError ? theme.error.dark : theme.secondary.main};
   transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease,
     transform 0.3s;
-  background-color: ${({ theme }) => theme.background.light};
+  background-color: ${({ theme }) => theme.disabled.contrastText};
 
   &:focus {
     border-color: ${({ theme, hasError }) =>
       hasError ? theme.error.main : theme.primary.dark};
     outline: none;
     color: ${({ theme, hasError }) =>
-      hasError ? theme.error.main : theme.primary.dark};
+      hasError ? theme.error.main : theme.primary.main};
     transform: scale(1.01);
-  }
-
-  &:hover {
-    transform: scale(1.01);
+    box-shadow: ${({ theme }) => theme.boxShadow[0]};
   }
 
   &:active {
@@ -87,6 +89,11 @@ const Input = styled.input<{ hasError: boolean }>`
       hasError ? theme.error.main : theme.primary.dark};
     color: ${({ theme, hasError }) =>
       hasError ? theme.error.main : theme.primary.main};
+  }
+
+  &:hover {
+    box-shadow: ${({ theme }) => theme.boxShadow[0]};
+    transform: scale(1.01);
   }
 
   &::-webkit-calendar-picker-indicator {
@@ -114,7 +121,7 @@ const EndIconWrapper = styled.div<{ clickable: boolean; hasError: boolean }>`
 
 const HelperText = styled.span`
   margin-top: 1px;
-  color: ${({ theme }) => theme.error.main};
+  color: ${({ theme }) => theme.error.dark};
   font-size: 0.875rem;
 `;
 

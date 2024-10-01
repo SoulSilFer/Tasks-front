@@ -29,10 +29,10 @@ const clickAnimation = keyframes`
 const Button = styled.button<{ loading: boolean; disabled?: boolean }>`
   transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease,
     transform 0.3s, background-color 0.3s ease;
-  border: 1px solid ${({ theme }) => theme.primary.light};
+  border: ${({ theme }) => theme.border[2]};
   border-radius: ${({ theme }) => theme.borderRadius[0]};
-  background-color: ${({ theme }) => theme.background.light};
-  color: ${({ theme }) => theme.primary.main};
+  background-color: ${({ theme }) => theme.disabled.contrastText};
+  color: ${({ theme }) => theme.secondary.main};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,8 +49,8 @@ const Button = styled.button<{ loading: boolean; disabled?: boolean }>`
 
   &:hover {
     box-shadow: ${({ theme }) => theme.boxShadow[0]};
-    color: ${({ theme }) => theme.primary.dark};
-    border: 1px solid ${({ theme }) => theme.primary.main};
+    color: ${({ theme }) => theme.primary.main};
+    border: ${({ theme }) => theme.border[2]};
   }
 
   &:active {
@@ -60,7 +60,7 @@ const Button = styled.button<{ loading: boolean; disabled?: boolean }>`
       css`
         animation: ${clickAnimation} 0.2s ease-out;
       `}
-    border: 1px solid ${({ theme }) => theme.primary.dark};
+    border: ${({ theme }) => theme.border[2]};
   }
 
   svg {

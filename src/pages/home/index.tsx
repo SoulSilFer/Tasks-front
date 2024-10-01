@@ -1,34 +1,47 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 import { StyledButton, StyledInput } from 'src/components';
 import * as S from './styles';
 
 export const HomePage: FC = () => {
-  const [loading, setLoading] = useState<boolean>(false);
-
   return (
     <S.PageContainer>
-      <StyledInput type={'text'} name={'vitor'} label={'hihi'} />
-
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '0.25rem',
-          width: '100%',
-        }}>
+      <S.ButtonsContainer>
         <StyledButton
-          label="Cancelar"
-          onClick={() => setLoading(!loading)}
-          loading={loading}
+          label="Sign in"
+          onClick={function (): void {
+            throw new Error('Function not implemented.');
+          }}
+          loading={false}
         />
 
         <StyledButton
-          label="Criar conta"
-          onClick={() => setLoading(!loading)}
-          loading={loading}
+          label="Sing up"
+          onClick={function (): void {
+            throw new Error('Function not implemented.');
+          }}
+          loading={false}
         />
-      </div>
+      </S.ButtonsContainer>
+
+      <S.FieldsContainer>
+        <StyledInput type="text" name="email" label="E-mail" />
+
+        <StyledInput
+          type="password"
+          name="password"
+          label="Senha"
+          error="vitor"
+        />
+
+        <StyledButton
+          label="Entrar"
+          onClick={function (): void {
+            throw new Error('Function not implemented.');
+          }}
+          loading={false}
+        />
+      </S.FieldsContainer>
     </S.PageContainer>
   );
 };
