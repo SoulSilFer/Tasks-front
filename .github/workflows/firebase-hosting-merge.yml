@@ -17,4 +17,12 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEWTASKSFRONTEND }}
           channelId: live
-          projectId: newtasksfrontend
+          projectId: ${{ secrets.VITE_FIREBASE_API_KEY }}
+        env:
+          FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
+          FIREBASE_AUTH_DOMAIN: ${{ secrets.VITE_FIREBASE_API_KEY }}
+          FIREBASE_PROJECT_ID: ${{ secrets.VITE_FIREBASE_API_KEY }}
+          FIREBASE_STORAGE_BUCKET: ${{ secrets.VITE_FIREBASE_API_KEY }}
+          FIREBASE_SENDER_ID: ${{ secrets.VITE_FIREBASE_API_KEY }}
+          FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_API_KEY }}
+          FIREBASE_MEASUREMENT_ID: ${{ secrets.VITE_FIREBASE_API_KEY }}
