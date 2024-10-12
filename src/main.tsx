@@ -2,9 +2,10 @@ import { getAnalytics } from 'firebase/analytics';
 import { FirebaseOptions, initializeApp } from 'firebase/app';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import App from './App.tsx';
+import store from './core/redux/store/index.ts';
 
 const firebaseConfig: FirebaseOptions = {
   apiKey: String(import.meta.env.VITE_FIREBASE_API_KEY),
@@ -16,7 +17,6 @@ const firebaseConfig: FirebaseOptions = {
   measurementId: String(import.meta.env.VITE_FIREBASE_MEASUREMENT_ID),
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 getAnalytics(app);
 
@@ -25,8 +25,8 @@ const root = createRoot(rootElement!);
 
 root.render(
   <StrictMode>
-    <BrowserRouter>
+    <Provider store={store}>
       <App />
-    </BrowserRouter>
+    </Provider>
   </StrictMode>
 );

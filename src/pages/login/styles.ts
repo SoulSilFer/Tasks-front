@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -6,24 +6,22 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-`;
-
-export const Wrapper = styled.div`
-  perspective: 1000px;
-  margin-top: 1rem;
+  transition: transform 0.3s ease, height 0.3s ease;
 `;
 
 export const CardSwitch = styled.div`
   position: relative;
-  width: 300px;
+  margin-top: 1rem;
+  width: 380px;
   height: 350px;
+  transition: height 0.3s ease;
 `;
 
 export const FlipCardInner = styled.div<{ isFlipped: boolean }>`
   width: 100%;
   height: 100%;
   position: absolute;
-  transition: transform 0.8s;
+  transition: transform 0.8s, height 0.3s ease;
   transform-style: preserve-3d;
   transform: ${({ isFlipped }) =>
     isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'};
@@ -39,7 +37,6 @@ export const FlipCardFront = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
   border-radius: ${({ theme }) => theme.borderRadius[1]};
   border: ${({ theme }) => theme.border[0]};
   box-shadow: ${({ theme }) => theme.boxShadow[0]};
@@ -49,62 +46,63 @@ export const FlipCardBack = styled(FlipCardFront)`
   transform: rotateY(180deg);
 `;
 
-export const FlipCardForm = styled.form`
+export const FlipCardForm = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
+  width: 100%;
+  padding: 0.5rem;
 `;
 
-export const FlipCardInput = styled.input`
-  width: 250px;
-  height: 40px;
-  border-radius: ${({ theme }) => theme.borderRadius[1]};
-  border: ${({ theme }) => theme.border[0]};
-  background-color: #fff;
+export const TwoColumns = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
 
-  font-size: 15px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.secondary.main};
-  padding: 5px 10px;
-  outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease,
-    transform 0.3s;
-
-  &::placeholder {
-    color: ${({ theme }) => theme.secondary.light};
-    opacity: 0.8;
+  & > div:first-child {
+    flex: 1;
   }
 
-  &:focus,
-  &:hover {
-    border: ${({ theme }) => theme.border[1]};
-    transform: scale(1.05);
-    box-shadow: ${({ theme }) => theme.boxShadow[0]};
+  & > div:last-child {
+    flex: 1;
   }
 `;
 
-export const FlipCardButton = styled.button`
-  margin: 20px 0;
-  width: 120px;
-  height: 40px;
-  border-radius: ${({ theme }) => theme.borderRadius[1]};
-  border: ${({ theme }) => theme.border[0]};
-  background-color: #fff;
-  box-shadow: ${({ theme }) => theme.boxShadow[0]};
-  font-size: 17px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.secondary.main};
-  cursor: pointer;
-
-  transition: border-color 0.3s ease, transform 0.1s;
-
-  &:hover {
-    border-color: ${({ theme }) => theme.primary.main};
+const slideDown = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-
-  &:active {
-    box-shadow: none;
-    transform: translate(3px, 3px);
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
+`;
+
+// Animação de erro quando ele some (slide de baixo para cima)
+const slideUp = keyframes`
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+`;
+
+export const ErrorSpan = styled.span<{ show: boolean }>`
+  color: ${({ theme }) => theme.error.main};
+  font-size: 0.875rem;
+  font-weight: bold;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+  max-height: ${({ show }) => (show ? '100px' : '0px')};
+  overflow: hidden;
+  animation: ${({ show }) => (show ? slideDown : slideUp)} 0.5s ease-in-out;
 `;

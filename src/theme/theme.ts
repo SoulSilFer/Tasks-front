@@ -114,12 +114,7 @@ const lightTheme: NewTheme = {
     light: '#efe3e3',
     contrastText: '#000000',
   },
-  border: [
-    '2px solid #323232',
-    '2px solid #fba11f',
-    '1px solid #323232',
-    '1px solid #d93025',
-  ],
+  border: ['2px solid', '1px solid'],
 };
 
 export { darkTheme, lightTheme };

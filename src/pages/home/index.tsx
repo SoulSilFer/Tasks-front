@@ -8,7 +8,8 @@ export const HomePage: FC = () => {
     <S.PageContainer>
       <S.ButtonsContainer>
         <StyledButton
-          label="Sign in"
+          label="Sing up"
+          type="button"
           onClick={function (): void {
             throw new Error('Function not implemented.');
           }}
@@ -17,6 +18,7 @@ export const HomePage: FC = () => {
 
         <StyledButton
           label="Sing up"
+          type="button"
           onClick={function (): void {
             throw new Error('Function not implemented.');
           }}
@@ -25,17 +27,18 @@ export const HomePage: FC = () => {
       </S.ButtonsContainer>
 
       <S.FieldsContainer>
-        <StyledInput type="text" name="email" label="E-mail" />
+        <StyledInput type="text" name="email" placeholder="E-mail" />
 
         <StyledInput
           type="password"
           name="password"
-          label="Senha"
+          placeholder="Senha"
           error="vitor"
         />
 
         <StyledButton
-          label="Entrar"
+          label="Sing up"
+          type="button"
           onClick={function (): void {
             throw new Error('Function not implemented.');
           }}

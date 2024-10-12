@@ -1,26 +1,37 @@
-import { useState } from 'react';
-import { useRoutes } from 'react-router-dom';
+import { useContext } from 'react';
+import { Helmet } from 'react-helmet';
 import { ThemeProvider } from 'styled-components';
-import { routes } from './routes';
-import { darkTheme, GlobalStyles, lightTheme } from './theme';
+
+import './i18n';
+import { LoginPage, PagesContext, PagesProvider, ROUTES } from './pages';
+import { GlobalStyles, lightTheme } from './theme';
+
+const routes: Record<ROUTES, JSX.Element> = {
+  login: <LoginPage />,
+  home: <div>Home Page</div>,
+};
 
 function App() {
-  const content = useRoutes(routes);
-  const [theme, setTheme] = useState('lightThemeOne');
-
-  const toggleTheme = () => {
-    setTheme(theme === 'lightThemeOne' ? 'darkThemeOne' : 'lightThemeOne');
-  };
-
   return (
-    <ThemeProvider theme={theme === 'lightThemeOne' ? lightTheme : darkTheme}>
+    <ThemeProvider theme={lightTheme}>
+      <Helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+      </Helmet>
       <GlobalStyles />
-      {/* <div> */}
-      <button onClick={toggleTheme}>Toggle Theme</button>
-      {content}
-      {/* </div> */}
+      <PagesProvider>
+        <InnerApp />
+      </PagesProvider>
     </ThemeProvider>
   );
+}
+
+function InnerApp(): React.ReactElement {
+  const { currentRoute } = useContext(PagesContext);
+
+  return routes[currentRoute];
 }
 
 export default App;
