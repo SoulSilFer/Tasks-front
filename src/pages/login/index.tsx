@@ -1,4 +1,4 @@
-/// src\pages\login\index.tsx
+// src/pages/login/index.tsx
 
 import { FC, useState } from 'react';
 
@@ -15,6 +15,7 @@ export const LoginPage: FC = () => {
   const [passwordType, setPasswordType] = useState<'text' | 'password'>(
     'password'
   );
+  const [signUpEmail, setSignUpEmail] = useState<string>('');
 
   return (
     <S.Container>
@@ -22,6 +23,7 @@ export const LoginPage: FC = () => {
         firstName="Log in"
         secondName="Sign up"
         setValue={setCardState}
+        checked={cardState === 1}
       />
 
       <S.CardSwitch>
@@ -30,12 +32,15 @@ export const LoginPage: FC = () => {
             passwordType={passwordType}
             setPasswordType={setPasswordType}
             t={t}
+            signUpEmail={signUpEmail}
           />
 
           <SignUpCard
             t={t}
             passwordType={passwordType}
             setPasswordType={setPasswordType}
+            setSignUpEmail={setSignUpEmail}
+            setCardState={setCardState}
           />
         </S.FlipCardInner>
       </S.CardSwitch>

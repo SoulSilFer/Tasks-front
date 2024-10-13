@@ -13,6 +13,8 @@ export const ptBrTranslations = {
     defaultError: 'Desculpe, mas teve ocorreu um erro inesperado :c',
     invalidEmail: 'E-mail inválido',
     letsGo: 'Simbora',
+    passwordsDontMatch: 'As senhas não coincidem',
+    userCreated: 'Usuário criado com sucesso',
   },
 };
 

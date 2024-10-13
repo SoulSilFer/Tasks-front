@@ -1,6 +1,7 @@
 // src/core/redux/slices/auth/auth-slice.ts
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { DefaultApiError, SignInResponse, SignInType } from 'src/common';
 import { initialRequestState, RequestState } from 'src/core';
 

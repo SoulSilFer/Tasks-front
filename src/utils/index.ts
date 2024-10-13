@@ -1,1 +1,1 @@
-export * from './inputChange';
+export * from './handleBaseInputChange';

@@ -11,7 +11,7 @@ import {
 import { clearSignInState, signInRequest } from 'src/core';
 import { useApiCallback, useAppSelector } from 'src/hooks';
 import { Translations } from 'src/i18n/locales';
-import { HandleBaseInputChange } from 'src/utils';
+import { handleBaseInputChange } from 'src/utils';
 import { PagesContext } from '../PagesProvider';
 import * as S from './styles';
 
@@ -19,9 +19,15 @@ interface Props {
   t: (key: keyof Translations['translations']) => string;
   passwordType: 'password' | 'text';
   setPasswordType: (value: SetStateAction<'password' | 'text'>) => void;
+  signUpEmail: string;
 }
 
-export const SignInCard: FC<Props> = ({ t, passwordType, setPasswordType }) => {
+export const SignInCard: FC<Props> = ({
+  t,
+  passwordType,
+  setPasswordType,
+  signUpEmail,
+}) => {
   const dispatch = useDispatch();
   const { updateCurrentPage } = useContext(PagesContext);
 
@@ -46,7 +52,7 @@ export const SignInCard: FC<Props> = ({ t, passwordType, setPasswordType }) => {
 
   // Função para lidar com a mudança do input
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    HandleBaseInputChange(e, signInFormData, setSignInFormData);
+    handleBaseInputChange(e, signInFormData, setSignInFormData);
 
     if (e.target.name === 'email') {
       const isValidEmail = validateEmail(e.target.value);
@@ -65,10 +71,9 @@ export const SignInCard: FC<Props> = ({ t, passwordType, setPasswordType }) => {
     dispatch(signInRequest(signInFormData));
   };
 
-  // Callback para redirecionar em caso de sucesso
   useEffect(() => {
     if (authRequest) {
-      updateCurrentPage('home'); // Atualize para a página ou rota correta
+      updateCurrentPage('home');
     }
   }, [authRequest, updateCurrentPage]);
 
@@ -77,6 +82,16 @@ export const SignInCard: FC<Props> = ({ t, passwordType, setPasswordType }) => {
     callback: clearSignInState,
     watcher: authError,
   });
+
+  useEffect(() => {
+    setSignInFormData({
+      password: '',
+      email: signUpEmail,
+    });
+  }, [signUpEmail]);
+
+  const disableButton =
+    !isFormValid || authLoad || oldSignInFormData === signInFormData;
 
   return (
     <S.FlipCardFront>
@@ -96,21 +111,22 @@ export const SignInCard: FC<Props> = ({ t, passwordType, setPasswordType }) => {
           placeholder={t('password')}
           type={passwordType}
           onChange={(e) =>
-            HandleBaseInputChange(e, signInFormData, setSignInFormData)
+            handleBaseInputChange(e, signInFormData, setSignInFormData)
           }
           value={signInFormData.password}
           endIcon={<VisibilityIcon visibility={passwordType === 'password'} />}
           onIconClick={() =>
             setPasswordType(passwordType === 'password' ? 'text' : 'password')
           }
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' && !disableButton) handleSubmit();
+          }}
         />
 
         <StyledButton
           label={t('letsGo')}
           onClick={handleSubmit}
-          disabled={
-            !isFormValid || authLoad || oldSignInFormData === signInFormData
-          }
+          disabled={disableButton}
           loading={authLoad}
           type="submit"
         />

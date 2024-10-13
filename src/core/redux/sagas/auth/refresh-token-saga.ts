@@ -40,7 +40,7 @@ function* refreshTokenPoolTask(): any {
         yield session.set(STORAGE_KEYS.TOKEN, body);
 
         // Espera 10 minutos antes de atualizar o token novamente
-        yield delay(600000);
+        yield delay(30);
       } else {
         throw new Error('Invalid token');
       }

@@ -13,6 +13,8 @@ export const enUsTranslations = {
     defaultError: 'Sorry, but an unexpected error occurred :c',
     invalidEmail: 'Invalid e-mail',
     letsGo: `Let's go`,
+    passwordsDontMatch: 'The passwords does not match',
+    userCreated: 'User created successfully',
   },
 };
 

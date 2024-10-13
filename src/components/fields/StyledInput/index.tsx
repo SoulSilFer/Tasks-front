@@ -1,4 +1,9 @@
-import { FC, HTMLInputTypeAttribute, useState } from 'react';
+import {
+  FC,
+  HTMLInputTypeAttribute,
+  KeyboardEventHandler,
+  useState,
+} from 'react';
 import * as S from './styles';
 
 interface Props {
@@ -10,6 +15,7 @@ interface Props {
   placeholder: string;
   endIcon?: React.ReactNode;
   onIconClick?: () => void;
+  onKeyDown?: KeyboardEventHandler<HTMLInputElement> | undefined;
 }
 
 export const StyledInput: FC<Props> = ({
@@ -21,6 +27,7 @@ export const StyledInput: FC<Props> = ({
   placeholder,
   endIcon,
   onIconClick,
+  onKeyDown,
   ...rest
 }) => {
   const [showPlaceholder, setShowPlaceholder] = useState(true);
@@ -47,6 +54,7 @@ export const StyledInput: FC<Props> = ({
           onFocus={handleFocus}
           onBlur={handleBlur}
           hasError={!!error}
+          onKeyDown={onKeyDown}
           {...rest}
         />
 

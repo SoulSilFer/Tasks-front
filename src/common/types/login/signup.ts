@@ -5,13 +5,21 @@ export interface SignUpType {
   name: string;
   password: string;
   gender: GENDER | '';
-  birthDay: string | '';
+  birthdate: string | '';
+  isGoogle: boolean;
 }
+
+export type SignUpResponse = {
+  id: string;
+  email: string;
+  name: string;
+};
 
 export const SignUpInitialValues: SignUpType = {
   email: '',
   name: '',
   password: '',
-  birthDay: '',
+  birthdate: '',
   gender: '',
+  isGoogle: false,
 };

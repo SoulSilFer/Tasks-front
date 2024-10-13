@@ -2,7 +2,13 @@
 
 import { HttpStatusCode } from 'axios';
 
-import { SignInResponse, SignInType, STORAGE_KEYS } from 'src/common';
+import {
+  SignInResponse,
+  SignInType,
+  SignUpResponse,
+  SignUpType,
+  STORAGE_KEYS,
+} from 'src/common';
 import { HttpClient, HttpResponse, SessionStorage } from 'src/core';
 
 export class AuthController {
@@ -72,5 +78,29 @@ export class AuthController {
       console.error('Error during refresh request:', error);
       throw error;
     }
+  }
+
+  async signUp(params: SignUpType): Promise<HttpResponse<SignUpResponse>> {
+    const { birthdate, email, gender, name, password } = params;
+
+    const body = {
+      email,
+      name,
+      password,
+      gender: gender ? gender : null,
+      birthdate: birthdate ? birthdate : null,
+      isGoogle: false,
+    };
+
+    const response = await this.httpClient.request<SignUpResponse>(
+      {
+        url: this.url,
+        method: 'post',
+        body,
+      },
+      true
+    );
+
+    return response;
   }
 }
