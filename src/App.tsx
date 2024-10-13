@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { ThemeProvider } from 'styled-components';
 
+import { SnackbarProvider } from 'notistack';
 import './i18n';
 import { LoginPage, PagesContext, PagesProvider, ROUTES } from './pages';
 import { GlobalStyles, lightTheme } from './theme';
@@ -21,9 +22,12 @@ function App() {
         />
       </Helmet>
       <GlobalStyles />
-      <PagesProvider>
-        <InnerApp />
-      </PagesProvider>
+
+      <SnackbarProvider maxSnack={3}>
+        <PagesProvider>
+          <InnerApp />
+        </PagesProvider>
+      </SnackbarProvider>
     </ThemeProvider>
   );
 }

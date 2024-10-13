@@ -24,7 +24,7 @@ export const InputWrapper = styled.div<{ hasError: boolean }>`
 
   &:hover {
     .endIconWrapper {
-      right: 3px;
+      /* right: 3px; */
 
       svg {
         fill: ${({ theme, hasError }) =>

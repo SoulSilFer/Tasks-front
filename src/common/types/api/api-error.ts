@@ -3,5 +3,5 @@ export interface DefaultApiError {
   timestamp: string;
   path: string;
   message: string | string[];
-  error: string;
+  error: 'Unauthorized' | 'Bad Request' | 'Not Found';
 }
