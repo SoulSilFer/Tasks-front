@@ -1,6 +1,6 @@
 // src/core/redux/sagas/auth/auth-saga.ts
 
-import { all, fork, takeLatest } from 'redux-saga/effects';
+import { all, takeLatest } from 'redux-saga/effects';
 
 import { SignInType } from 'src/common';
 import {
@@ -13,7 +13,6 @@ import {
   signInSuccess,
 } from 'src/core';
 import { createSagaRequest } from '../saga-request';
-import { pollRefreshTokenTaskWatcher } from './refresh-token-saga';
 
 const client = new ApiClient();
 const authController = new AuthController(makeApiUrl(API_ROUTES.LOGIN), client);
@@ -28,6 +27,5 @@ export function* rootAuthSaga() {
         onSuccess: signInSuccess,
       })
     ),
-    fork(pollRefreshTokenTaskWatcher),
   ]);
 }

@@ -15,6 +15,11 @@ export const ptBrTranslations = {
     letsGo: 'Simbora',
     passwordsDontMatch: 'As senhas não coincidem',
     userCreated: 'Usuário criado com sucesso',
+    signIn: 'Sign in',
+    signUp: 'Sign up',
+    female: 'Feminino',
+    male: 'Masculino',
+    other: 'Outro',
   },
 };
 

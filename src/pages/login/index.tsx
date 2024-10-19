@@ -1,15 +1,16 @@
-// src/pages/login/index.tsx
+/// src/pages/login/index.tsx
 
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { StyledSlider } from 'src/components';
-import { useAppTranslation } from 'src/hooks';
+import { useAppLogOut, useAppTranslation } from 'src/hooks';
 import { SignInCard } from './signIn';
 import { SignUpCard } from './signUp';
 import * as S from './styles';
 
 export const LoginPage: FC = () => {
   const { t } = useAppTranslation();
+  const logOut = useAppLogOut();
 
   const [cardState, setCardState] = useState<0 | 1>(0);
   const [passwordType, setPasswordType] = useState<'text' | 'password'>(
@@ -17,11 +18,15 @@ export const LoginPage: FC = () => {
   );
   const [signUpEmail, setSignUpEmail] = useState<string>('');
 
+  useEffect(() => {
+    logOut();
+  }, []);
+
   return (
     <S.Container>
       <StyledSlider
-        firstName="Log in"
-        secondName="Sign up"
+        firstName={t('signIn')}
+        secondName={t('signUp')}
         setValue={setCardState}
         checked={cardState === 1}
       />

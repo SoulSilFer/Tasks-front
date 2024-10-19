@@ -1,38 +1,42 @@
-// src/core/redux/slices/auth/auth-slice.ts
+// src/core/redux/slices/auth/refresh-token-slice.ts
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { DefaultApiError, SignInResponse, SignInType } from 'src/common';
+import { DefaultApiError, SignInResponse } from 'src/common';
 import { initialRequestState, RequestState } from 'src/core';
 
 const initialState: RequestState<SignInResponse> =
   initialRequestState<SignInResponse>();
 
-const authSlice = createSlice({
-  name: 'auth',
+const refreshTokenSlice = createSlice({
+  name: 'refreshToken',
   initialState,
   reducers: {
-    signInRequest(state, _action: PayloadAction<SignInType>) {
+    refreshTokenRequest(state) {
       state.load = true;
       state.error = undefined;
       state.request = undefined;
     },
-    signInSuccess(state, action: PayloadAction<SignInResponse>) {
+    refreshTokenSuccess(state, action: PayloadAction<SignInResponse>) {
       state.load = false;
       state.request = action.payload;
       state.error = undefined;
     },
-    signInError(state, action: PayloadAction<DefaultApiError>) {
+    refreshTokenError(state, action: PayloadAction<DefaultApiError>) {
       state.load = false;
       state.error = action.payload;
     },
-    clearSignInState(_state) {
+    clearRefreshTokenState(_state) {
       return initialRequestState<SignInResponse>();
     },
   },
 });
 
-export const { signInRequest, signInSuccess, signInError, clearSignInState } =
-  authSlice.actions;
+export const {
+  refreshTokenRequest,
+  refreshTokenSuccess,
+  refreshTokenError,
+  clearRefreshTokenState,
+} = refreshTokenSlice.actions;
 
-export default authSlice.reducer;
+export default refreshTokenSlice.reducer;

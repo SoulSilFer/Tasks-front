@@ -1,18 +1,15 @@
-import { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { ThemeProvider } from 'styled-components';
 
 import { SnackbarProvider } from 'notistack';
+import { useRoutes } from 'react-router-dom';
 import './i18n';
-import { LoginPage, PagesContext, PagesProvider, ROUTES } from './pages';
+import { routes } from './routes';
 import { GlobalStyles, lightTheme } from './theme';
 
-const routes: Record<ROUTES, JSX.Element> = {
-  login: <LoginPage />,
-  home: <div>Home Page</div>,
-};
-
 function App() {
+  const content = useRoutes(routes);
+
   return (
     <ThemeProvider theme={lightTheme}>
       <Helmet>
@@ -23,19 +20,9 @@ function App() {
       </Helmet>
       <GlobalStyles />
 
-      <SnackbarProvider maxSnack={3}>
-        <PagesProvider>
-          <InnerApp />
-        </PagesProvider>
-      </SnackbarProvider>
+      <SnackbarProvider maxSnack={3}>{content}</SnackbarProvider>
     </ThemeProvider>
   );
-}
-
-function InnerApp(): React.ReactElement {
-  const { currentRoute } = useContext(PagesContext);
-
-  return routes[currentRoute];
 }
 
 export default App;

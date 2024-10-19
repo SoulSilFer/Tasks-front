@@ -152,9 +152,9 @@ export const SignUpCard: FC<Props> = ({
               handleBaseInputChange(e, signUpFormData, setSignUpFormData)
             }
             data={[
-              [GENDER.FEMALE, 'Feminino'],
-              [GENDER.MALE, 'Masculino'],
-              [GENDER.OTHER, 'Outro'],
+              [GENDER.FEMALE, t('female')],
+              [GENDER.MALE, t('male')],
+              [GENDER.OTHER, t('other')],
             ]}
           />
 

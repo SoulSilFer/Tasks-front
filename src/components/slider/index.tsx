@@ -18,7 +18,7 @@ export const StyledSlider: FC<Props> = ({
   checked,
 }) => (
   <S.SliderContainer>
-    <S.Label>{firstName}</S.Label>
+    <S.Label onClick={() => setValue(0)}>{firstName}</S.Label>
 
     <label className="switch" style={{ display: 'flex' }}>
       <S.ToggleInput
@@ -31,7 +31,7 @@ export const StyledSlider: FC<Props> = ({
       <S.Slider className="slider" />
     </label>
 
-    <S.Label>{secondName}</S.Label>
+    <S.Label onClick={() => setValue(1)}>{secondName}</S.Label>
   </S.SliderContainer>
 );
 

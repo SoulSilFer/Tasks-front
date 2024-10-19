@@ -1,7 +1,8 @@
-import { FC, SetStateAction, useContext, useEffect, useState } from 'react';
+import { FC, SetStateAction, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-import { SignInInitialValues, SignInType } from 'src/common';
+import { PAGES_ROUTES, SignInInitialValues, SignInType } from 'src/common';
 import {
   EmailIcon,
   StyledButton,
@@ -12,7 +13,6 @@ import { clearSignInState, signInRequest } from 'src/core';
 import { useApiCallback, useAppSelector } from 'src/hooks';
 import { Translations } from 'src/i18n/locales';
 import { handleBaseInputChange } from 'src/utils';
-import { PagesContext } from '../PagesProvider';
 import * as S from './styles';
 
 interface Props {
@@ -29,7 +29,7 @@ export const SignInCard: FC<Props> = ({
   signUpEmail,
 }) => {
   const dispatch = useDispatch();
-  const { updateCurrentPage } = useContext(PagesContext);
+  const navigate = useNavigate();
 
   const [signInFormData, setSignInFormData] =
     useState<SignInType>(SignInInitialValues);
@@ -42,7 +42,7 @@ export const SignInCard: FC<Props> = ({
     error: authError,
     load: authLoad,
     request: authRequest,
-  } = useAppSelector((state) => state.auth.signIn);
+  } = useAppSelector((state) => state.auth);
 
   // Função para validar o email
   const validateEmail = (email: string): boolean => {
@@ -73,9 +73,9 @@ export const SignInCard: FC<Props> = ({
 
   useEffect(() => {
     if (authRequest) {
-      updateCurrentPage('home');
+      navigate(PAGES_ROUTES.HOME);
     }
-  }, [authRequest, updateCurrentPage]);
+  }, [authRequest]);
 
   useApiCallback({
     variant: 'error',

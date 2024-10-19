@@ -6,7 +6,7 @@ import {
   HttpRequest,
   HttpResponse,
   InvalidCredentialsError,
-  SessionStorage,
+  LocalStorage,
 } from 'src/core';
 
 export class ApiClient implements HttpClient {
@@ -29,7 +29,12 @@ export class ApiClient implements HttpClient {
       });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      axiosResponse = error.response;
+      if (error.response?.status === 401 && !unauthorized) {
+        this.logout();
+        throw new InvalidCredentialsError();
+      } else {
+        axiosResponse = error.response;
+      }
     }
 
     return {
@@ -41,8 +46,8 @@ export class ApiClient implements HttpClient {
   private applyDefaultConfig(
     headers?: AxiosRequestHeaders
   ): AxiosRequestHeaders {
-    const session = new SessionStorage();
-    const token = session.get(STORAGE_KEYS.TOKEN) as SignInResponse;
+    const local = new LocalStorage();
+    const token = local.get(STORAGE_KEYS.TOKEN) as SignInResponse;
 
     if (token?.access_token) {
       const axiosHeaders = new AxiosHeaders();
@@ -60,5 +65,12 @@ export class ApiClient implements HttpClient {
       console.error('Invalid credentials: Token not found');
       throw new InvalidCredentialsError();
     }
+  }
+
+  private logout(): void {
+    const local = new LocalStorage();
+    local.delete(STORAGE_KEYS.TOKEN);
+
+    window.location.href = '/login';
   }
 }

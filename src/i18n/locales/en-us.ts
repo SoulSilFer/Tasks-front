@@ -15,6 +15,11 @@ export const enUsTranslations = {
     letsGo: `Let's go`,
     passwordsDontMatch: 'The passwords does not match',
     userCreated: 'User created successfully',
+    signIn: 'Sign in',
+    signUp: 'Sign up',
+    female: 'Female',
+    male: 'Male',
+    other: 'Other',
   },
 };
 

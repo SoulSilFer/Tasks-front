@@ -3,7 +3,7 @@ import { STORAGE_KEYS } from 'src/common';
 const PREFIX = 'tasks_';
 
 export class LocalStorage {
-  set<T>(key: STORAGE_KEYS, value: T): void {
+  async set<T>(key: STORAGE_KEYS, value: T): Promise<void> {
     try {
       localStorage.setItem(PREFIX + key, JSON.stringify(value));
     } catch (error) {

@@ -9,7 +9,7 @@ import {
   SignUpType,
   STORAGE_KEYS,
 } from 'src/common';
-import { HttpClient, HttpResponse, SessionStorage } from 'src/core';
+import { HttpClient, HttpResponse, LocalStorage } from 'src/core';
 
 export class AuthController {
   constructor(
@@ -33,8 +33,8 @@ export class AuthController {
         response.statusCode === HttpStatusCode.Ok;
 
       if (success) {
-        const session = new SessionStorage();
-        await session.set(STORAGE_KEYS.TOKEN, response.body);
+        const localStorage = new LocalStorage();
+        await localStorage.set(STORAGE_KEYS.TOKEN, response.body);
       } else {
         console.error('Error on authentication:', response.body);
       }
@@ -48,8 +48,8 @@ export class AuthController {
 
   async refresh(): Promise<HttpResponse<SignInResponse>> {
     try {
-      const session = new SessionStorage();
-      const token = session.get(STORAGE_KEYS.TOKEN) as SignInResponse;
+      const localStorage = new LocalStorage();
+      const token = localStorage.get(STORAGE_KEYS.TOKEN) as SignInResponse;
 
       if (!token?.access_token) {
         throw new Error('No token available for refresh');
@@ -58,7 +58,7 @@ export class AuthController {
       const response = await this.httpClient.request<SignInResponse>(
         {
           url: this.url,
-          method: 'post',
+          method: 'get',
         },
         false
       );
@@ -68,7 +68,7 @@ export class AuthController {
         response.statusCode === HttpStatusCode.Ok;
 
       if (success && response.body) {
-        await session.set(STORAGE_KEYS.TOKEN, response.body);
+        await localStorage.set(STORAGE_KEYS.TOKEN, response.body);
       } else {
         console.error('Error on token refresh:', response.body);
       }
