@@ -16,6 +16,6 @@ export const Content = styled.main`
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-  padding: 1rem 0 0.4rem 0;
+  padding: 1rem 0 0.3rem 0;
   background-color: ${({ theme }) => theme.background.secondary};
 `;

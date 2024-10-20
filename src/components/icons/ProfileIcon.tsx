@@ -1,14 +1,29 @@
 import { FC } from 'react';
 
-export const ProfileIcon: FC = () => {
+export const AvatarIcon: FC = () => {
   return (
     <svg
-      width="800px"
       height="800px"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 2H9v2H7v6h2V4h6V2zm0 8H9v2h6v-2zm0-6h2v6h-2V4zM4 16h2v-2h12v2H6v4h12v-4h2v6H4v-6z" />
+      width="800px"
+      version="1.1"
+      id="Layer_1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 512 512"
+      xmlSpace="preserve">
+      <g>
+        <g>
+          <circle cx="256" cy="114.526" r="114.526" />
+        </g>
+      </g>
+      <g>
+        <g>
+          <path
+            d="M256,256c-111.619,0-202.105,90.487-202.105,202.105c0,29.765,24.13,53.895,53.895,53.895h296.421
+			c29.765,0,53.895-24.13,53.895-53.895C458.105,346.487,367.619,256,256,256z"
+          />
+        </g>
+      </g>
     </svg>
   );
 };

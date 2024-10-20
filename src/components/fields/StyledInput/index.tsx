@@ -1,4 +1,5 @@
 import {
+  CSSProperties,
   FC,
   HTMLInputTypeAttribute,
   KeyboardEventHandler,
@@ -7,7 +8,7 @@ import {
 import * as S from './styles';
 
 interface Props {
-  type: HTMLInputTypeAttribute;
+  type?: HTMLInputTypeAttribute;
   name: string;
   value?: string | number | readonly string[] | undefined;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -16,10 +17,13 @@ interface Props {
   endIcon?: React.ReactNode;
   onIconClick?: () => void;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement> | undefined;
+  withLabel?: boolean;
+  disabled?: boolean;
+  style?: CSSProperties;
 }
 
 export const StyledInput: FC<Props> = ({
-  type,
+  type = 'text',
   name,
   onChange,
   value,
@@ -28,6 +32,9 @@ export const StyledInput: FC<Props> = ({
   endIcon,
   onIconClick,
   onKeyDown,
+  withLabel = false,
+  disabled,
+  style,
   ...rest
 }) => {
   const [showPlaceholder, setShowPlaceholder] = useState(true);
@@ -42,21 +49,27 @@ export const StyledInput: FC<Props> = ({
     setShowPlaceholder(false);
   };
 
+  console.log({ type });
+
   return (
     <S.InputContainer hasError={!!error}>
       <S.InputWrapper hasError={!!error}>
         <S.Input
-          type={showPlaceholder ? 'text' : type}
+          type={type === 'date' && showPlaceholder ? 'text' : type}
           onChange={onChange}
           name={name}
           value={value}
-          placeholder={placeholder}
+          placeholder={!withLabel ? placeholder : ''}
           onFocus={handleFocus}
           onBlur={handleBlur}
           hasError={!!error}
           onKeyDown={onKeyDown}
+          disabled={disabled}
+          style={style}
           {...rest}
         />
+
+        {withLabel && <S.Label hasError={!!error}>{placeholder}</S.Label>}
 
         {endIcon && (
           <S.EndIconWrapper

@@ -27,6 +27,9 @@ export const enUsTranslations = {
     allMale: 'All',
     allFemale: 'All',
     organiation: 'Organization',
+    gender: 'Gender',
+    birthdateFull: 'Birthdate',
+    changePassword: 'Change password',
   },
 };
 

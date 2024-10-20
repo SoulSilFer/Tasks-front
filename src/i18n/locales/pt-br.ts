@@ -27,6 +27,9 @@ export const ptBrTranslations = {
     allMale: 'Todos',
     allFemale: 'Todas',
     organiation: 'Organização',
+    gender: 'Gênero',
+    birthdateFull: 'Data de nascimento',
+    changePassword: 'Alterar senha',
   },
 };
 

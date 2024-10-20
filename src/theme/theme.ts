@@ -8,7 +8,7 @@ export interface Pallete {
 export interface NewTheme {
   primary: Pallete;
   secondary: Pallete;
-  disabled: Pallete;
+  disabled: Pallete & { diferencialColor?: string };
   error: Pallete;
   active: Pallete;
   boxShadow: string[];
@@ -85,10 +85,11 @@ const lightTheme: NewTheme = {
     contrastText: '#d6d6d6',
   },
   disabled: {
-    light: '#a6a6a6',
+    light: '#fcfcfc',
     main: '#8c8c8c',
     dark: '#666666',
     contrastText: '#ffffff',
+    diferencialColor: ' #f0f0f0',
   },
   error: {
     light: '#f28b82',

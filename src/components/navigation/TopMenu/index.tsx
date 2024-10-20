@@ -4,13 +4,14 @@ import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PAGES_ROUTES } from 'src/common';
 import {
+  AvatarIcon,
   DoorOutIcon,
   MenuPopover,
-  ProfileIcon,
   SettingsIcon,
   StyledSelect,
 } from 'src/components';
 import { useAppLogOut, useAppSelector, useAppTranslation } from 'src/hooks';
+import { handleBaseInputChange } from 'src/utils';
 import * as S from './styles';
 
 export const TopMenu: FC = () => {
@@ -19,6 +20,9 @@ export const TopMenu: FC = () => {
   const logOut = useAppLogOut();
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const [selectedValue, setSelectedValue] = useState<{ organization: string }>({
+    organization: '',
+  });
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -34,7 +38,7 @@ export const TopMenu: FC = () => {
       onClick: () => {
         navigate(PAGES_ROUTES.PROFILE);
       },
-      icon: <ProfileIcon />,
+      icon: <AvatarIcon />,
     },
     {
       name: t('settings'),
@@ -60,15 +64,20 @@ export const TopMenu: FC = () => {
     ['all', t('allFemale')],
   ];
 
+  console.log({ selectedValue });
+
   return (
     <S.HeaderContainer>
       <S.Logo>SilFer.Tasks</S.Logo>
 
       <S.SelectContainer>
         <StyledSelect
-          name={t('organiation')}
-          placeholder={'Organização'}
-          value={''}
+          name="organization"
+          placeholder={t('organiation')}
+          value={selectedValue.organization}
+          onChange={(e) =>
+            handleBaseInputChange(e, selectedValue, setSelectedValue)
+          }
           data={orgArrayData} // Passa o array montado para o StyledSelect
         />
       </S.SelectContainer>

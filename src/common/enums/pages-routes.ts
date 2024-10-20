@@ -1,6 +1,6 @@
 export enum PAGES_ROUTES {
   AUTH = '/login',
-  HOME = '',
+  HOME = '/',
   PROFILE = '/profile',
 
   ALL = '*',
