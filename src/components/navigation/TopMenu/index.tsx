@@ -1,13 +1,23 @@
-/// src\components\navigation\TopMenu\index.tsx
+// src/components/navigation/TopMenu/index.tsx
 
 import { FC, useState } from 'react';
-
-import { StyledSelect } from 'src/components/fields';
-import { EmailIcon, VisibilityIcon } from 'src/components/icons';
-import { MenuPopover } from 'src/components/MenuPopover';
+import { useNavigate } from 'react-router-dom';
+import { PAGES_ROUTES } from 'src/common';
+import {
+  DoorOutIcon,
+  MenuPopover,
+  ProfileIcon,
+  SettingsIcon,
+  StyledSelect,
+} from 'src/components';
+import { useAppLogOut, useAppSelector, useAppTranslation } from 'src/hooks';
 import * as S from './styles';
 
 export const TopMenu: FC = () => {
+  const navigate = useNavigate();
+  const { t } = useAppTranslation();
+  const logOut = useAppLogOut();
+
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -20,20 +30,34 @@ export const TopMenu: FC = () => {
 
   const menuItems = [
     {
-      name: 'Profile',
+      name: t('profile'),
       onClick: () => {
-        window.alert('Profile clicked');
+        navigate(PAGES_ROUTES.PROFILE);
       },
-      icon: <EmailIcon />,
+      icon: <ProfileIcon />,
     },
     {
-      name: 'Settings hahahah',
+      name: t('settings'),
       onClick: () => {
         console.log('Settings clicked');
-        handleClose();
       },
-      icon: <VisibilityIcon visibility />,
+      icon: <SettingsIcon />,
     },
+    {
+      name: t('logOut'),
+      onClick: () => {
+        logOut();
+      },
+      icon: <DoorOutIcon />,
+    },
+  ];
+
+  const { request } = useAppSelector((state) => state.getUserById);
+
+  const orgArrayData = [
+    ['personal', t('personal')],
+    ...(request?.organizations?.map((org) => [org.id, org.acronym]) || []),
+    ['all', t('allFemale')],
   ];
 
   return (
@@ -42,12 +66,10 @@ export const TopMenu: FC = () => {
 
       <S.SelectContainer>
         <StyledSelect
-          name="organization"
+          name={t('organiation')}
           placeholder={'Organização'}
-          data={[
-            ['personal', 'Pessoal'],
-            ['all', 'Todas'],
-          ]}
+          value={''}
+          data={orgArrayData} // Passa o array montado para o StyledSelect
         />
       </S.SelectContainer>
 

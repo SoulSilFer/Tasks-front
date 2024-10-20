@@ -9,7 +9,7 @@ interface Props {
   placeholder: string;
   endIcon?: React.ReactNode;
   onIconClick?: () => void;
-  data: [string | number, string | number][];
+  data: string[][];
 }
 
 export const StyledSelect: FC<Props> = ({

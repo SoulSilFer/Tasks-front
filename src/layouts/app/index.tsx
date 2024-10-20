@@ -5,7 +5,11 @@ import { useDispatch } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { PAGES_ROUTES, STORAGE_KEYS } from 'src/common';
 import { Loading, NavBars } from 'src/components';
-import { LocalStorage, refreshTokenRequest } from 'src/core';
+import {
+  getUserByIdRequest,
+  LocalStorage,
+  refreshTokenRequest,
+} from 'src/core';
 import { useAppLogOut, useAppSelector } from 'src/hooks';
 import * as S from './styles';
 
@@ -16,6 +20,11 @@ export const AppLayout: FC = () => {
   const token = localStorage.get(STORAGE_KEYS.TOKEN);
   const [loading, setLoading] = useState<boolean>(true);
   const logOut = useAppLogOut();
+
+  useEffect(() => {
+    dispatch(refreshTokenRequest());
+    dispatch(getUserByIdRequest());
+  }, []);
 
   useEffect(() => {
     if (!token) {
@@ -30,7 +39,7 @@ export const AppLayout: FC = () => {
       dispatch(refreshTokenRequest());
     }, 1000 * 60 * 4); // 4 minutos
     return () => clearInterval(tokenRefreshInterval);
-  }, [dispatch]);
+  }, []);
 
   const { error, request } = useAppSelector((state) => state.refreshToken);
 

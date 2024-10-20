@@ -55,7 +55,7 @@ export const MenuItem = styled.li`
   padding: 0.5rem;
   cursor: pointer;
   transition: background-color 0.3s;
-  justify-content: space-between;
+  justify-content: flex-start;
 
   &:hover {
     background-color: ${({ theme }) => theme.background.dark};
@@ -64,7 +64,7 @@ export const MenuItem = styled.li`
 
 export const Icon = styled.span`
   display: flex;
-  margin-left: 0.75rem;
+  margin-right: 0.75rem;
   svg {
     width: 1.25rem;
     height: 1.25rem;

@@ -20,6 +20,13 @@ export const enUsTranslations = {
     female: 'Female',
     male: 'Male',
     other: 'Other',
+    profile: 'Profile',
+    settings: 'Settings',
+    logOut: 'Log out',
+    personal: 'Personal',
+    allMale: 'All',
+    allFemale: 'All',
+    organiation: 'Organization',
   },
 };
 

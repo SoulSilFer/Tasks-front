@@ -20,6 +20,13 @@ export const ptBrTranslations = {
     female: 'Feminino',
     male: 'Masculino',
     other: 'Outro',
+    profile: 'Perfil',
+    settings: 'Configurações',
+    logOut: 'Sair',
+    personal: 'Pessoal',
+    allMale: 'Todos',
+    allFemale: 'Todas',
+    organiation: 'Organização',
   },
 };
 

@@ -54,8 +54,9 @@ export const MenuPopover: React.FC<MenuPopoverProps> = ({
               item.onClick(); // Executa a ação do item do menu
               onClose(); // Fecha o menu após a execução
             }}>
-            <S.ItemText>{item.name}</S.ItemText>
             <S.Icon>{item.icon}</S.Icon>
+
+            <S.ItemText>{item.name}</S.ItemText>
           </S.MenuItem>
         </S.MenuList>
       ))}
