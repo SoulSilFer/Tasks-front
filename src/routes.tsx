@@ -4,7 +4,7 @@ import { RouteObject } from 'react-router-dom';
 
 import { PAGES_ROUTES } from './common';
 import { AppLayout } from './layouts';
-import { HomePage, LoginPage, ProfilePage } from './pages';
+import { ConfigPage, HomePage, LoginPage, ProfilePage } from './pages';
 
 export const routes: RouteObject[] = [
   {
@@ -28,6 +28,16 @@ export const routes: RouteObject[] = [
       {
         path: '',
         element: <ProfilePage />,
+      },
+    ],
+  },
+  {
+    path: PAGES_ROUTES.CONFIG,
+    element: <AppLayout />,
+    children: [
+      {
+        path: '',
+        element: <ConfigPage />,
       },
     ],
   },

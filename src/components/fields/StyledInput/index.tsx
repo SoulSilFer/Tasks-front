@@ -49,8 +49,6 @@ export const StyledInput: FC<Props> = ({
     setShowPlaceholder(false);
   };
 
-  console.log({ type });
-
   return (
     <S.InputContainer hasError={!!error}>
       <S.InputWrapper hasError={!!error}>

@@ -6,6 +6,7 @@ import { PAGES_ROUTES } from 'src/common';
 import {
   AvatarIcon,
   DoorOutIcon,
+  HomeIcon,
   MenuPopover,
   SettingsIcon,
   StyledSelect,
@@ -43,7 +44,7 @@ export const TopMenu: FC = () => {
     {
       name: t('settings'),
       onClick: () => {
-        console.log('Settings clicked');
+        navigate(PAGES_ROUTES.CONFIG);
       },
       icon: <SettingsIcon />,
     },
@@ -64,11 +65,15 @@ export const TopMenu: FC = () => {
     ['all', t('allFemale')],
   ];
 
-  console.log({ selectedValue });
-
   return (
     <S.HeaderContainer>
-      <S.Logo>SilFer.Tasks</S.Logo>
+      <S.LogoHomeContainer>
+        <S.HomeIconContainer onClick={() => navigate(PAGES_ROUTES.HOME)}>
+          <HomeIcon />
+        </S.HomeIconContainer>
+
+        <S.Logo>SilFer.Tasks</S.Logo>
+      </S.LogoHomeContainer>
 
       <S.SelectContainer>
         <StyledSelect
@@ -83,10 +88,11 @@ export const TopMenu: FC = () => {
       </S.SelectContainer>
 
       <S.AvatarContainer onClick={handleOpen}>
-        <img
-          src="https://lh3.googleusercontent.com/pw/AP1GczMzo15luQmTNJAnNqDN19dvXNOWDkLKCNwxs19CDAeL611MrkEh0aL24AilOHV894J6onDV9amrGLUkxhiHaboXtpIbuEepKtbmIEBIJp_Hng_ZJEv2jOUVjbvhKIt_04zwJ2dfvncxlAFQqK1RyBiJGg=w318-h324-s-no-gm?authuser=0"
-          alt="avatar"
-        />
+        {request && request.picture ? (
+          <img src={request.picture} alt="avatar" />
+        ) : (
+          <AvatarIcon />
+        )}
       </S.AvatarContainer>
 
       <MenuPopover items={menuItems} anchor={anchorEl} onClose={handleClose} />

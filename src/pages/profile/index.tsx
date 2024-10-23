@@ -10,6 +10,7 @@ import {
 import {
   AvatarIcon,
   Loading,
+  PageHolder,
   PencilIcon,
   StyledInput,
   StyledSelect,
@@ -47,90 +48,88 @@ export const ProfilePage: FC = () => {
   const disableFields = true;
 
   return (
-    <S.Container>
-      <S.Content>
-        <S.FieldsContainer show={!!request}>
-          <S.AvatarContainer
-            onClick={() => window.alert('Nothing for now, my love.')}>
-            {values.picture ? (
-              <img src={values.picture} alt="avatar" />
-            ) : (
-              <AvatarIcon />
-            )}
-            <PencilIcon className="pencil-icon" />
-          </S.AvatarContainer>
+    <PageHolder>
+      <S.FieldsContainer show={!!request}>
+        <S.AvatarContainer
+          onClick={() => window.alert('Nothing for now, my love.')}>
+          {values.picture ? (
+            <img src={values.picture} alt="avatar" />
+          ) : (
+            <AvatarIcon />
+          )}
+          <PencilIcon className="pencil-icon" />
+        </S.AvatarContainer>
 
-          <S.Divider />
+        <S.Divider />
+
+        <StyledInput
+          name="name"
+          placeholder={t('name')}
+          withLabel
+          value={values.name}
+          disabled={disableFields}
+        />
+
+        <StyledInput
+          name="email"
+          placeholder={t('email')}
+          withLabel
+          value={values.email}
+          disabled={disableFields || (request && request.isGoogle && true)}
+        />
+
+        <S.FieldGroup>
+          <StyledSelect
+            name="gender"
+            placeholder={t('gender')}
+            withLabel={true}
+            disabled={disableFields}
+            value={values.gender ? values.gender : ''}
+            data={[
+              [GENDER.FEMALE, t('female')],
+              [GENDER.MALE, t('male')],
+              [GENDER.OTHER, t('other')],
+            ]}
+          />
 
           <StyledInput
-            name="name"
-            placeholder={t('name')}
+            type="date"
+            name="birthdate"
+            placeholder={t('birthdateFull')}
             withLabel
-            value={values.name}
+            value={formattedBirthdate}
             disabled={disableFields}
           />
+        </S.FieldGroup>
 
-          <StyledInput
-            name="email"
-            placeholder={t('email')}
-            withLabel
-            value={values.email}
-            disabled={disableFields || (request && request.isGoogle && true)}
-          />
+        <S.Divider />
 
+        {request && !request.isGoogle && (
           <S.FieldGroup>
-            <StyledSelect
-              name="gender"
-              placeholder={t('gender')}
-              withLabel={true}
+            <StyledInput
+              name="password"
+              type="password"
+              placeholder={t('changePassword')}
+              withLabel
+              value={'Oh no, my darling, not in here'}
               disabled={disableFields}
-              value={values.gender ? values.gender : ''}
-              data={[
-                [GENDER.FEMALE, t('female')],
-                [GENDER.MALE, t('male')],
-                [GENDER.OTHER, t('other')],
-              ]}
             />
 
             <StyledInput
-              type="date"
-              name="birthdate"
-              placeholder={t('birthdateFull')}
+              name="password"
+              type="password"
+              placeholder={t('confirmPassword')}
               withLabel
-              value={formattedBirthdate}
+              value={'Oh no, my darling, not in here'}
               disabled={disableFields}
             />
           </S.FieldGroup>
+        )}
+      </S.FieldsContainer>
 
-          <S.Divider />
-
-          {request && !request.isGoogle && (
-            <S.FieldGroup>
-              <StyledInput
-                name="password"
-                type="password"
-                placeholder={t('changePassword')}
-                withLabel
-                value={'Oh no, my darling, not in here'}
-                disabled={disableFields}
-              />
-
-              <StyledInput
-                name="password"
-                type="password"
-                placeholder={t('confirmPassword')}
-                withLabel
-                value={'Oh no, my darling, not in here'}
-                disabled={disableFields}
-              />
-            </S.FieldGroup>
-          )}
-        </S.FieldsContainer>
-
-        <S.LoadingContainer show={!request}>
-          <Loading />
-        </S.LoadingContainer>
-      </S.Content>
-    </S.Container>
+      <S.LoadingContainer show={!request}>
+        <Loading />
+      </S.LoadingContainer>
+    </PageHolder>
   );
 };
