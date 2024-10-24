@@ -3,6 +3,7 @@
 import { HttpStatusCode } from 'axios';
 
 import {
+  GoogleAuthType,
   SignInResponse,
   SignInType,
   SignUpResponse,
@@ -102,5 +103,34 @@ export class AuthController {
     );
 
     return response;
+  }
+
+  async google(body: GoogleAuthType): Promise<HttpResponse<SignInResponse>> {
+    try {
+      const response = await this.httpClient.request<SignInResponse>(
+        {
+          url: this.url,
+          method: 'post',
+          body: body,
+        },
+        true
+      );
+
+      const success =
+        response.statusCode === HttpStatusCode.Created ||
+        response.statusCode === HttpStatusCode.Ok;
+
+      if (success) {
+        const localStorage = new LocalStorage();
+        await localStorage.set(STORAGE_KEYS.TOKEN, response.body);
+      } else {
+        console.error('Error on authentication:', response.body);
+      }
+
+      return response;
+    } catch (error) {
+      console.error('Error during API request:', error);
+      throw error;
+    }
   }
 }

@@ -3,6 +3,7 @@
 import { combineReducers } from 'redux';
 
 import authReducer from '../slices/auth/auth-slice';
+import googleAuthReducer from '../slices/auth/google-auth-slice';
 import refreshTokenReducer from '../slices/auth/refresh-token-slice';
 import signUpReducer from '../slices/auth/sign-up-slice';
 
@@ -16,4 +17,5 @@ export const rootReducer = combineReducers({
   signUp: signUpReducer,
   refreshToken: refreshTokenReducer,
   getUserById: getUserByIdReducer,
+  googleAuth: googleAuthReducer,
 });

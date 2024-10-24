@@ -5,4 +5,5 @@ export * from './Loading';
 export * from './MenuPopover';
 export * from './navigation';
 export * from './page-holder';
+export * from './SignInGoogle';
 export * from './slider';

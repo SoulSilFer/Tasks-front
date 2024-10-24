@@ -2,6 +2,7 @@ export enum API_ROUTES {
   LOGIN = 'auth/signin',
   SIGNUP = 'auth/signup',
   REFRESH = 'auth/refresh',
+  AUTH_GOOGLE = 'auth/google',
 
   GET_USER_BY_ID = 'user/by-id',
 

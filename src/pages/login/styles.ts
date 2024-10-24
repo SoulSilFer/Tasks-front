@@ -106,3 +106,26 @@ export const ErrorSpan = styled.span<{ show: boolean }>`
   overflow: hidden;
   animation: ${({ show }) => (show ? slideDown : slideUp)} 0.5s ease-in-out;
 `;
+
+export const DividerContainer = styled.div`
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  span {
+    color: ${({ theme }) => theme.primary.main};
+    font-size: 1rem;
+    font-weight: bold;
+  }
+`;
+
+export const Divider = styled.hr`
+  width: 100%;
+  height: 0px;
+  border: 1px solid;
+  border-color: ${({ theme }) => theme.secondary.main};
+`;

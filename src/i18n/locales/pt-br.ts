@@ -30,6 +30,7 @@ export const ptBrTranslations = {
     gender: 'Gênero',
     birthdateFull: 'Data de nascimento',
     changePassword: 'Alterar senha',
+    or: 'Ou',
   },
 };
 

@@ -30,6 +30,7 @@ export const enUsTranslations = {
     gender: 'Gender',
     birthdateFull: 'Birthdate',
     changePassword: 'Change password',
+    or: 'Or',
   },
 };
 

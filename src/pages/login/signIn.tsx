@@ -9,6 +9,7 @@ import {
   StyledInput,
   VisibilityIcon,
 } from 'src/components';
+import SignInWithGoogle from 'src/components/SignInGoogle';
 import { clearSignInState, signInRequest } from 'src/core';
 import { useApiCallback, useAppSelector } from 'src/hooks';
 import { Translations } from 'src/i18n/locales';
@@ -130,6 +131,14 @@ export const SignInCard: FC<Props> = ({
           loading={authLoad}
           type="submit"
         />
+
+        <S.DividerContainer>
+          <S.Divider />
+          <span>{t('or')}</span>
+          <S.Divider />
+        </S.DividerContainer>
+
+        <SignInWithGoogle />
       </S.FlipCardForm>
     </S.FlipCardFront>
   );

@@ -2,7 +2,12 @@
 
 import { all } from 'redux-saga/effects';
 
-import { rootAuthSaga, rootRefreshTokenSaga, rootSignUpSaga } from './auth';
+import {
+  rootAuthSaga,
+  rootGoogleAuthSaga,
+  rootRefreshTokenSaga,
+  rootSignUpSaga,
+} from './auth';
 import { rootGetUserByIdSaga } from './user';
 
 export function* watcherSaga() {
@@ -11,5 +16,6 @@ export function* watcherSaga() {
     rootSignUpSaga(),
     rootRefreshTokenSaga(),
     rootGetUserByIdSaga(),
+    rootGoogleAuthSaga(),
   ]);
 }
