@@ -11,11 +11,13 @@ import { PAGES_ROUTES } from 'src/common';
 import { clearGoogleAuthState, googleAuthRequest } from 'src/core';
 import { useApiCallback, useAppSelector } from 'src/hooks';
 
-const CLIENT_ID = String(import.meta.env.VITE_GOOGLE_CLIENT_ID);
+const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 const SignInWithGoogle: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  console.log({ CLIENT_ID });
 
   const handleSuccess = (credentialResponse: CredentialResponse) => {
     if (credentialResponse.credential)
