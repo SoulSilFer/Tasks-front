@@ -1,3 +1,4 @@
+export * from '../theme/CustomThemeProvider';
 export * from './button';
 export * from './fields';
 export * from './icons';
@@ -5,5 +6,7 @@ export * from './Loading';
 export * from './MenuPopover';
 export * from './navigation';
 export * from './page-holder';
+export * from './pages';
 export * from './SignInGoogle';
 export * from './slider';
+export * from './tooltip';

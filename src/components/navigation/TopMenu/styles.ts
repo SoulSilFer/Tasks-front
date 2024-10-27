@@ -75,7 +75,7 @@ export const AvatarContainer = styled.div`
   transition: box-shadow 0.2s ease-in, transform 0.2s;
 
   &:hover {
-    box-shadow: ${({ theme }) => theme.boxShadow[1]};
+    box-shadow: ${({ theme }) => theme.boxShadow[2]};
     transform: scale(1.1);
   }
 

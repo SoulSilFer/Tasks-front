@@ -22,7 +22,6 @@ export const AppLayout: FC = () => {
   const logOut = useAppLogOut();
 
   useEffect(() => {
-    dispatch(refreshTokenRequest());
     dispatch(getUserByIdRequest());
   }, []);
 

@@ -1,23 +1,34 @@
 /// src\pages\home\index.tsx
 
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { Value } from 'react-calendar/src/shared/types.js';
 
-import { useNavigate } from 'react-router-dom';
-import { PAGES_ROUTES } from 'src/common';
-import { StyledButton } from 'src/components';
+import { CalendarHomePage } from 'src/components';
+import { useAppTranslation } from 'src/hooks';
 import * as S from './styles';
 
 export const HomePage: FC = () => {
-  const navigateTo = useNavigate();
+  const { t } = useAppTranslation();
+
+  const [dates, setDates] = useState<Value>(new Date());
 
   return (
     <S.PageContainer>
-      <StyledButton
-        label="Atualizar a página"
-        type="button"
-        loading={false}
-        onClick={() => navigateTo(PAGES_ROUTES.AUTH)}
-      />
+      <CalendarHomePage setDates={setDates} />
+
+      <S.SelectedDateText>
+        <h2>
+          {Array.isArray(dates) ? t('selectedRangeDates') : t('selectedDate')}
+        </h2>
+
+        <h3>
+          {Array.isArray(dates)
+            ? dates
+                .map((item) => item?.toLocaleDateString())
+                .join(` ${t('to')} `)
+            : dates?.toLocaleDateString()}
+        </h3>
+      </S.SelectedDateText>
     </S.PageContainer>
   );
 };

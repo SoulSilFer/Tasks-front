@@ -103,7 +103,7 @@ const lightTheme: NewTheme = {
     dark: '#0077c2',
     contrastText: '#ffffff',
   },
-  boxShadow: ['4px 4px #323232', '3px 2px 4px #323232'],
+  boxShadow: ['4px 4px #323232', '3px 2px 4px #323232', '2px 2px#323232'],
   background: {
     light: '#e0e0e0',
     main: '#ffd864',
