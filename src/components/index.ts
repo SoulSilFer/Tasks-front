@@ -9,4 +9,5 @@ export * from './page-holder';
 export * from './pages';
 export * from './SignInGoogle';
 export * from './slider';
+export * from './tab';
 export * from './tooltip';

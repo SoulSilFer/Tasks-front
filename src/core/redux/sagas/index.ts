@@ -8,6 +8,7 @@ import {
   rootRefreshTokenSaga,
   rootSignUpSaga,
 } from './auth';
+import { rootGetTaskByDateSaga } from './task';
 import { rootGetUserByIdSaga } from './user';
 
 export function* watcherSaga() {
@@ -17,5 +18,6 @@ export function* watcherSaga() {
     rootRefreshTokenSaga(),
     rootGetUserByIdSaga(),
     rootGoogleAuthSaga(),
+    rootGetTaskByDateSaga(),
   ]);
 }

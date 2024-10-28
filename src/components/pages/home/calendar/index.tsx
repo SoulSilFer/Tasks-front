@@ -29,6 +29,7 @@ export const CalendarHomePage: FC<Props> = ({ setDates }) => {
         selectRange={selectRange}
         showDoubleView={showDoubleView}
       />
+
       <S.SideMenuContainer>
         <S.SideMenuIcon
           fitSize="no"
@@ -37,6 +38,7 @@ export const CalendarHomePage: FC<Props> = ({ setDates }) => {
           rotate="yes">
           <PixelArrowIcon />
         </S.SideMenuIcon>
+
         <S.SideMenuIcon
           fitSize="no"
           color="primary"
@@ -49,6 +51,7 @@ export const CalendarHomePage: FC<Props> = ({ setDates }) => {
             itemClick={() => setShowDoubleView(!showDoubleView)}
           />
         </S.SideMenuIcon>
+
         <S.SideMenuIcon
           fitSize="yes"
           color="primary"
@@ -61,12 +64,15 @@ export const CalendarHomePage: FC<Props> = ({ setDates }) => {
             itemClick={() => setSelectRange(!selectRange)}
           />
         </S.SideMenuIcon>
+
         <S.SideMenuIcon
           fitSize="no"
           color="secondary"
           cursor="default"
-          rotate="no">
-          <PixelArrowIcon />
+          rotate="yes">
+          <div style={{ transform: 'rotate(180deg)' }}>
+            <PixelArrowIcon />
+          </div>
         </S.SideMenuIcon>
       </S.SideMenuContainer>
     </S.Container>

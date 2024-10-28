@@ -6,6 +6,8 @@ export enum API_ROUTES {
 
   GET_USER_BY_ID = 'user/by-id',
 
+  GET_TASK_BY_DATE = 'task/by-date',
+
   // Sub routes
   // ALL = 'all',
   // ADD_USER = 'add-user',

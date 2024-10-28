@@ -1,6 +1,6 @@
 /// src\pages\profile\index.tsx
 
-import { FC, useEffect, useState } from 'react';
+import { FC, Fragment, useEffect, useState } from 'react';
 
 import {
   GENDER,
@@ -14,6 +14,7 @@ import {
   PencilIcon,
   StyledInput,
   StyledSelect,
+  StyledTab,
 } from 'src/components';
 import { useAppSelector, useAppTranslation } from 'src/hooks';
 import * as S from './styles';
@@ -62,69 +63,83 @@ export const ProfilePage: FC = () => {
 
         <S.Divider />
 
-        <StyledInput
-          name="name"
-          placeholder={t('name')}
-          withLabel
-          value={values.name}
-          disabled={disableFields}
+        <StyledTab
+          tabs={[
+            { children: <h1>Tab 1</h1>, title: 'Organizações' },
+            {
+              children: (
+                <Fragment>
+                  <StyledInput
+                    name="name"
+                    placeholder={t('name')}
+                    withLabel
+                    value={values.name}
+                    disabled={disableFields}
+                  />
+
+                  <StyledInput
+                    name="email"
+                    placeholder={t('email')}
+                    withLabel
+                    value={values.email}
+                    disabled={
+                      disableFields || (request && request.isGoogle && true)
+                    }
+                  />
+
+                  <S.FieldGroup>
+                    <StyledSelect
+                      name="gender"
+                      placeholder={t('gender')}
+                      withLabel={true}
+                      disabled={disableFields}
+                      value={values.gender ? values.gender : ''}
+                      data={[
+                        [GENDER.FEMALE, t('female')],
+                        [GENDER.MALE, t('male')],
+                        [GENDER.OTHER, t('other')],
+                      ]}
+                    />
+
+                    <StyledInput
+                      type="date"
+                      name="birthdate"
+                      placeholder={t('birthdateFull')}
+                      withLabel
+                      value={formattedBirthdate}
+                      disabled={disableFields}
+                    />
+                  </S.FieldGroup>
+
+                  <S.Divider />
+
+                  {request && !request.isGoogle && (
+                    <S.FieldGroup>
+                      <StyledInput
+                        name="password"
+                        type="password"
+                        placeholder={t('changePassword')}
+                        withLabel
+                        value={'Oh no, my darling, not in here'}
+                        disabled={disableFields}
+                      />
+
+                      <StyledInput
+                        name="password"
+                        type="password"
+                        placeholder={t('confirmPassword')}
+                        withLabel
+                        value={'Oh no, my darling, not in here'}
+                        disabled={disableFields}
+                      />
+                    </S.FieldGroup>
+                  )}
+                </Fragment>
+              ),
+              title: 'Dados pessoais',
+            },
+          ]}
         />
-
-        <StyledInput
-          name="email"
-          placeholder={t('email')}
-          withLabel
-          value={values.email}
-          disabled={disableFields || (request && request.isGoogle && true)}
-        />
-
-        <S.FieldGroup>
-          <StyledSelect
-            name="gender"
-            placeholder={t('gender')}
-            withLabel={true}
-            disabled={disableFields}
-            value={values.gender ? values.gender : ''}
-            data={[
-              [GENDER.FEMALE, t('female')],
-              [GENDER.MALE, t('male')],
-              [GENDER.OTHER, t('other')],
-            ]}
-          />
-
-          <StyledInput
-            type="date"
-            name="birthdate"
-            placeholder={t('birthdateFull')}
-            withLabel
-            value={formattedBirthdate}
-            disabled={disableFields}
-          />
-        </S.FieldGroup>
-
-        <S.Divider />
-
-        {request && !request.isGoogle && (
-          <S.FieldGroup>
-            <StyledInput
-              name="password"
-              type="password"
-              placeholder={t('changePassword')}
-              withLabel
-              value={'Oh no, my darling, not in here'}
-              disabled={disableFields}
-            />
-
-            <StyledInput
-              name="password"
-              type="password"
-              placeholder={t('confirmPassword')}
-              withLabel
-              value={'Oh no, my darling, not in here'}
-              disabled={disableFields}
-            />
-          </S.FieldGroup>
-        )}
       </S.FieldsContainer>
 
       <S.LoadingContainer show={!request}>

@@ -1,3 +1,5 @@
+/// src\components\page-holder\index.tsx
+
 import { FC, ReactNode } from 'react';
 
 import * as S from './styles';
@@ -7,9 +9,5 @@ interface Props {
 }
 
 export const PageHolder: FC<Props> = ({ children }) => {
-  return (
-    <S.Container>
-      <S.Content>{children}</S.Content>
-    </S.Container>
-  );
+  return <S.Container>{children}</S.Container>;
 };

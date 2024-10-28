@@ -58,9 +58,7 @@ export const AppLayout: FC = () => {
     <S.FullPage>
       <NavBars />
 
-      <S.Content>
-        <Outlet />
-      </S.Content>
+      <Outlet />
     </S.FullPage>
   );
 };

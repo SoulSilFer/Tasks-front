@@ -9,7 +9,10 @@ import signUpReducer from '../slices/auth/sign-up-slice';
 
 import getUserByIdReducer from '../slices/user/get-by-id-slice';
 
+import getTaskByDateReducer from '../slices/task/get-task-by-date-slice';
+
 export * from './auth';
+export * from './task';
 export * from './user';
 
 export const rootReducer = combineReducers({
@@ -18,4 +21,5 @@ export const rootReducer = combineReducers({
   refreshToken: refreshTokenReducer,
   getUserById: getUserByIdReducer,
   googleAuth: googleAuthReducer,
+  getTaskByDate: getTaskByDateReducer,
 });
