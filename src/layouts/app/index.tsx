@@ -3,8 +3,9 @@
 import { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
+
 import { PAGES_ROUTES, STORAGE_KEYS } from 'src/common';
-import { Loading, NavBars } from 'src/components';
+import { Loading, TopMenu } from 'src/components';
 import {
   getUserByIdRequest,
   LocalStorage,
@@ -56,7 +57,7 @@ export const AppLayout: FC = () => {
 
   return (
     <S.FullPage>
-      <NavBars />
+      <TopMenu />
 
       <Outlet />
     </S.FullPage>

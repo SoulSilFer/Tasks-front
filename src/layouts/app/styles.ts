@@ -8,14 +8,5 @@ export const FullPage = styled.div`
   height: 100%;
   width: 100%;
   padding: 0.4rem;
-`;
-
-export const Content = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-  padding: 1rem 0 0.3rem 0;
-  background-color: ${({ theme }) => theme.background.secondary};
+  position: relative;
 `;

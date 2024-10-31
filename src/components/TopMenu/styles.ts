@@ -6,14 +6,13 @@ export const HeaderContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   height: 60px;
   background-color: ${({ theme }) => theme.paper.main};
   padding: 0 20px;
   border-radius: ${({ theme }) => theme.borderRadius[1]};
   border: ${({ theme }) => theme.border[0]};
   box-shadow: ${({ theme }) => theme.boxShadow[0]};
-
+  margin-bottom: 1rem;
   min-width: 150px;
 `;
 

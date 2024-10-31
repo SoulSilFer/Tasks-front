@@ -5,7 +5,8 @@ export const PageContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-grow: 1;
+  position: relative;
+  height: 100%; /* Adiciona um limite de altura */
 `;
 
 export const CalendarContainer = styled.div`
@@ -15,8 +16,13 @@ export const CalendarContainer = styled.div`
 export const BlockScreen = styled.div<{ show?: string }>`
   height: 100%;
   width: 100%;
-  backdrop-filter: blur(4px);
-  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(4px); /* Adiciona efeito de desfoque */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.7
+  ); /* Ajusta a transparência do fundo */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,6 +31,7 @@ export const BlockScreen = styled.div<{ show?: string }>`
   opacity: ${({ show }) => (show ? 1 : 0)};
   border-radius: ${({ theme }) => theme.borderRadius[0]};
   transition: opacity 0.2s ease-in-out;
+  display: flex;
   flex-direction: column;
 
   svg {
@@ -49,8 +56,8 @@ export const TaskContainer = styled.main`
   align-items: center;
   width: 100%;
   gap: 1rem;
+  overflow-y: auto; /* Adiciona rolagem vertical */
   padding: 1rem;
-  max-width: 600px;
 `;
 
 export const TaskItem = styled.div`
