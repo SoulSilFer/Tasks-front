@@ -2,10 +2,10 @@
 
 import styled from 'styled-components';
 
-export const InputContainer = styled.div<{ hasError: boolean; width?: string }>`
+export const InputContainer = styled.div<{ hasError: boolean }>`
   display: flex;
   flex-direction: column;
-  width: ${({ width }) => (width ? width : '100%')};
+  width: 100%;
   transition: fill 0.3s ease, transform 0.3s;
 
   &:hover {
@@ -47,9 +47,9 @@ export const InputWrapper = styled.div<{ hasError: boolean }>`
   }
 `;
 
-export const Input = styled.input<{ hasError: boolean; disabled?: boolean }>`
+export const Input = styled.textarea<{ hasError: boolean; disabled?: boolean }>`
   width: 100%;
-  height: 40px;
+  min-height: 40px;
 
   border-color: ${({ theme, hasError }) =>
     hasError ? theme.error.dark : theme.secondary.main};
@@ -64,6 +64,7 @@ export const Input = styled.input<{ hasError: boolean; disabled?: boolean }>`
   font-size: 15px;
   font-weight: 600;
   padding: 5px 5px;
+  resize: none;
   padding-right: 2rem;
   outline: none;
   transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease,
@@ -91,20 +92,6 @@ export const Input = styled.input<{ hasError: boolean; disabled?: boolean }>`
     height: 70%;
     opacity: 1;
     box-sizing: Border-box;
-  }
-
-  /* Esconder setas em input type number */
-  &[type='number']::-webkit-outer-spin-button,
-  &[type='number']::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  &[type='number'] {
-    padding: 0;
-    text-align: center;
-
-    appearance: textfield;
-    -moz-appearance: textfield; /* Firefox */
   }
 
   &:disabled {

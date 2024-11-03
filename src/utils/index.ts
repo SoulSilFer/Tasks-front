@@ -1,2 +1,3 @@
 export * from './handleBaseInputChange';
-export * from './param-builder';
+export * from './paramBuilder';
+export * from './weekDayBuilder';

@@ -44,6 +44,13 @@ export const enUsTranslations = {
     selectedRangeDates: 'Selected date range:',
     selectedDate: 'Selected date:',
     to: 'to',
+    Sunday: 'Sunday',
+    Monday: 'Monday',
+    Tuesday: 'Tuesday',
+    Wednesday: 'Wednesday',
+    Thursday: 'Thursday',
+    Friday: 'Friday',
+    Saturday: 'Saturday',
   },
 };
 

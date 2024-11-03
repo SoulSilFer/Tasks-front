@@ -54,5 +54,10 @@ export const SideMenuIcon = styled.div<{
     }
 
     ${({ rotate }) => rotate === 'yes' && 'transform: rotate(180deg);'}
+
+    line {
+      stroke: ${({ theme, color }) =>
+        color === 'primary' ? theme.primary.main : theme.secondary.main};
+    }
   }
 `;

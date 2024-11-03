@@ -31,6 +31,16 @@ export const routes: RouteObject[] = [
       },
     ],
   },
+  // {
+  //   path: PAGES_ROUTES.ORGANIZATION,
+  //   element: <AppLayout />,
+  //   children: [
+  //     {
+  //       path: '',
+  //       element: <OrganizationPage />,
+  //     },
+  //   ],
+  // },
   {
     path: PAGES_ROUTES.CONFIG,
     element: <AppLayout />,

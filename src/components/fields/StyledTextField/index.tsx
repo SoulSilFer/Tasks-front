@@ -3,7 +3,6 @@ import {
   FC,
   HTMLInputTypeAttribute,
   KeyboardEventHandler,
-  useState,
 } from 'react';
 import * as S from './styles';
 
@@ -11,20 +10,19 @@ interface Props {
   type?: HTMLInputTypeAttribute;
   name: string;
   value?: string | number | readonly string[] | undefined;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
   error?: string;
   placeholder: string;
   endIcon?: React.ReactNode;
   onIconClick?: () => void;
-  onKeyDown?: KeyboardEventHandler<HTMLInputElement> | undefined;
+  onKeyDown?: KeyboardEventHandler<HTMLTextAreaElement> | undefined;
   withLabel?: boolean;
   disabled?: boolean;
-  containerWidth?: string;
   style?: CSSProperties;
+  rows?: number;
 }
 
-export const StyledInput: FC<Props> = ({
-  type = 'text',
+export const StyledTextField: FC<Props> = ({
   name,
   onChange,
   value,
@@ -36,38 +34,23 @@ export const StyledInput: FC<Props> = ({
   withLabel = false,
   disabled,
   style,
-  containerWidth,
+  rows,
   ...rest
 }) => {
-  const [showPlaceholder, setShowPlaceholder] = useState(true);
-
-  const handleBlur = () => {
-    if (!value || value === '') {
-      setShowPlaceholder(true);
-    }
-  };
-
-  const handleFocus = () => {
-    setShowPlaceholder(false);
-  };
-
   return (
-    <S.InputContainer hasError={!!error} width={containerWidth}>
+    <S.InputContainer hasError={!!error}>
       <S.InputWrapper hasError={!!error}>
         <S.Input
-          type={type === 'date' && showPlaceholder ? 'text' : type}
           onChange={onChange}
           name={name}
           value={value}
           placeholder={!withLabel ? placeholder : ''}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
           hasError={!!error}
           onKeyDown={onKeyDown}
           disabled={disabled}
           style={style}
+          rows={rows}
           title={placeholder}
-          min={0}
           {...rest}
         />
 

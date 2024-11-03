@@ -44,6 +44,13 @@ export const ptBrTranslations = {
     selectedRangeDates: 'Intervalo de datas selecionadas:',
     selectedDate: 'Data selecionada:',
     to: 'à',
+    Sunday: 'Domingo',
+    Monday: 'Segunda-Feira',
+    Tuesday: 'Terça-Feira',
+    Wednesday: 'Quarta-Feira',
+    Thursday: 'Quinta-Feira',
+    Friday: 'Sexta-Feira',
+    Saturday: 'Sabádo',
   },
 };
 

@@ -20,7 +20,7 @@ export const Container = styled.div<{ height?: string }>`
   min-width: 350px;
   margin-top: 1rem;
   height: fit-content;
-  animation: ${heightAnimation} 0.5s ease;
+  animation: ${heightAnimation} 0.2s ease;
 `;
 
 // background-color: ${({ theme }) => theme.paper.main};

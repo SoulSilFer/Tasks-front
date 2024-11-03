@@ -3,6 +3,7 @@ export enum PAGES_ROUTES {
   HOME = '/',
   PROFILE = '/profile',
   CONFIG = '/config',
+  ORGANIZATION = '/organization',
 
   ALL = '*',
 }

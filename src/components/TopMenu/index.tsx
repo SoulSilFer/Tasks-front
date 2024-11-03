@@ -2,6 +2,7 @@
 
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { PAGES_ROUTES, SHOW_TASK, STORAGE_KEYS } from 'src/common';
 import {
   AvatarIcon,
@@ -43,6 +44,13 @@ export const TopMenu: FC = () => {
       },
       icon: <AvatarIcon />,
     },
+    // {
+    //   name: 'Organizações',
+    //   onClick: () => {
+    //     navigate(PAGES_ROUTES.ORGANIZATION);
+    //   },
+    //   icon: <OrganizationIcon />,
+    // },
     {
       name: t('settings'),
       onClick: () => {

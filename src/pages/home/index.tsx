@@ -13,6 +13,7 @@ import * as S from './styles';
 export const HomePage: FC = () => {
   const dispatch = useDispatch();
   const { t } = useAppTranslation();
+
   const localStorage = new LocalStorage();
   const selectedOrg = localStorage.get(STORAGE_KEYS.SELECT_ORG) as
     | SHOW_TASK

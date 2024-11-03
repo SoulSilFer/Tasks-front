@@ -1,11 +1,13 @@
 import { FC, useState } from 'react';
 import { Value } from 'react-calendar/src/shared/types.js';
-
 import {
+  AddCalendarIcon,
+  AddTaskModalContent,
   CalendarRangeIcon,
   PixelArrowIcon,
   SplitColumnsIcon,
   StyledCalendar,
+  StyledModal,
   StyledToolTip,
 } from 'src/components';
 import * as S from './styles';
@@ -17,6 +19,9 @@ interface Props {
 export const CalendarHomePage: FC<Props> = ({ setDates }) => {
   const [selectRange, setSelectRange] = useState<boolean>(false);
   const [showDoubleView, setShowDoubleView] = useState<boolean>(false);
+  const [addModal, setAddModal] = useState<boolean>(false);
+  const [addSubTask, setAddSubTask] = useState<boolean>(false);
+  const [innerDate, setInnerDate] = useState<Value>(new Date());
 
   return (
     <S.Container
@@ -24,12 +29,14 @@ export const CalendarHomePage: FC<Props> = ({ setDates }) => {
       width={showDoubleView ? '752px' : '376px'}
       showDoubleView={showDoubleView}>
       <StyledCalendar
-        setDates={setDates}
+        setDates={(e) => {
+          setDates(e);
+          setInnerDate(e);
+        }}
         showWeekNumbers
         selectRange={selectRange}
         showDoubleView={showDoubleView}
       />
-
       <S.SideMenuContainer>
         <S.SideMenuIcon
           fitSize="no"
@@ -38,7 +45,6 @@ export const CalendarHomePage: FC<Props> = ({ setDates }) => {
           rotate="yes">
           <PixelArrowIcon />
         </S.SideMenuIcon>
-
         <S.SideMenuIcon
           fitSize="no"
           color="primary"
@@ -51,7 +57,6 @@ export const CalendarHomePage: FC<Props> = ({ setDates }) => {
             itemClick={() => setShowDoubleView(!showDoubleView)}
           />
         </S.SideMenuIcon>
-
         <S.SideMenuIcon
           fitSize="yes"
           color="primary"
@@ -64,7 +69,18 @@ export const CalendarHomePage: FC<Props> = ({ setDates }) => {
             itemClick={() => setSelectRange(!selectRange)}
           />
         </S.SideMenuIcon>
-
+        <S.SideMenuIcon
+          fitSize="no"
+          color="primary"
+          cursor="pointer"
+          rotate="no">
+          <StyledToolTip
+            children={<AddCalendarIcon />}
+            content="Adicionar tarefa"
+            id="addTask"
+            itemClick={() => setAddModal(true)}
+          />
+        </S.SideMenuIcon>
         <S.SideMenuIcon
           fitSize="no"
           color="secondary"
@@ -75,6 +91,25 @@ export const CalendarHomePage: FC<Props> = ({ setDates }) => {
           </div>
         </S.SideMenuIcon>
       </S.SideMenuContainer>
+      <StyledModal
+        open={addModal}
+        children={
+          <AddTaskModalContent
+            closeModal={() => setAddModal(false)}
+            addSubTask={setAddSubTask}
+            date={innerDate}
+          />
+        }
+        handleClose={() => setAddModal(false)}
+      />
+      {/* <StyledModal
+        open={addSubTask}
+        children={
+          <AddTaskModalContent closeModal={() => setAddSubTask(false)} />
+        }
+        sub
+        handleClose={() => setAddSubTask(false)}
+      /> */}
     </S.Container>
   );
 };
